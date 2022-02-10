@@ -1,5 +1,5 @@
 # File: .github/workflows/VIP.yml
-name: hyzaw-GithubSync
+name: yydspure-GithubSync
 on: 
   schedule: 
   - cron: '22 2 */3 * *' #此处为同步运行时间
@@ -7,7 +7,7 @@ on:
   watch: 
    types: started 
   repository_dispatch:
-    types: sync-hyzaw-GithubSync
+    types: sync-yydspure-GithubSync
 jobs: 
  repo-sync: 
      env: 
