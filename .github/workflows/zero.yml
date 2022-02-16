@@ -22,7 +22,7 @@ jobs:
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/bullfly666/percollect.git"
+          source_repo: "https://github.com/KingRan/KR.git"
           source_branch: "main"
           destination_branch: "zero"
           github_token: ${{ secrets.PAT }}
