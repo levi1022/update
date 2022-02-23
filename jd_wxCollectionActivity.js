@@ -20,7 +20,7 @@ const $ = new Env('加购物车抽奖');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = message = '' ,isPush = false;
-let activityId = '86932b527e2146d0962a449450c52b1c'
+let activityId = ''
 let lz_cookie = {}
 
 if (process.env.ACTIVITY_ID && process.env.ACTIVITY_ID != "") {
