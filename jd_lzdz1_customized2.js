@@ -2,7 +2,7 @@
 ck1 助力作者, 后续助力ck1, ck1别黑号
 
 */
-const $ = new Env("3.8女神节 做自己的主角");
+const $ = new Env("女王驾到 钜惠来袭");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', message = '';
