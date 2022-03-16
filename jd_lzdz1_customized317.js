@@ -112,7 +112,7 @@ async function member() {
             if ($.openCardList) {
                 $.log(">>> 模拟上报访问记录")
                 for (let i = 0; i < ($.openCardList.length); i++) {
-                    await task('crm/pageVisit/insertCrmPageVisit', `venderId=1000003005&pageId=llk20211015&elementId=入会跳转&pin=${encodeURIComponent($.secretPin)}`, 1)
+                    await task('crm/pageVisit/insertCrmPageVisit', `venderId=1000000576&pageId=dzlhkk068d4d0ab8a6609723002f50&elementId=入会跳转&pin=${encodeURIComponent($.secretPin)}`, 1)
                     await $.wait(1000)
                 }
 
