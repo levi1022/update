@@ -68,7 +68,7 @@ console.log("脚本部份加密,不喜欢勿跑!!!,10次抽奖机会,3个助力�
             $.activityShopId = '1000376745'
             $.activityUrl = `https://lzkjdz-isv.isvjcloud.com/esteelauder/inviteNew/activityPage?activityId=${$.activityId}&inviterUuid=${encodeURIComponent($.authorCode)}&shareuserid4minipg=${encodeURIComponent($.secretPin)}&sid=&un_area=`
             await member();
-            await $.wait(1000)
+            await $.wait(5000)
             if ($.bean > 0) {
                 message += `\n【京东账号${$.index}】${$.nickName || $.UserName} \n       └ 获得 ${$.bean} 京豆。`
             }
@@ -105,7 +105,7 @@ async function member() {
             console.log("去助力 -> " + $.authorCode)
             await taskaccessLog('common/accessLogWithAD', `venderId=${$.activityShopId}&code=99&pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}&pageUrl=${$.activityUrl}&subType=app&adSource=null`, 1);
             // await task('wxActionCommon/getUserInfo', `pin=${encodeURIComponent($.secretPin)}`, 1)
-            await $.wait(2000)
+            await $.wait(5000)
             if ($.index === 1) {
                 await task('inviteNew/activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&inviterUuid=${encodeURIComponent($.authorCode)}`, 0, 1)
             } else {
@@ -114,7 +114,7 @@ async function member() {
             $.log("加入店铺会员")
             await getShopOpenCardInfo({ "venderId": `${$.activityShopId}`, "channel": "401" }, $.activityShopId)
             await bindWithVender({ "venderId": `${$.activityShopId}`, "bindByVerifyCodeFlag": 1, "registerExtend": {}, "writeChildFlag": 0, "activityId": $.openCardActivityId, "channel": 7012 }, $.activityShopId)
-            await $.wait(2000)
+            await $.wait(5000)
             if ($.index === 1) {
                 await task('inviteNew/activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&inviterUuid=${encodeURIComponent($.authorCode)}`, 0, 1)
             } else {
