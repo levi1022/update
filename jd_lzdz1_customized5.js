@@ -60,6 +60,7 @@ if ($.isNode()) {
                 '3000bd151f014f07802aa623fb1dddf6',
                 'a9c4b3bffa6044b78646684b98d107b2',
                 '2dd9a4ec3c404222a27f7dc24bbf9fda',
+                'c7a6432b419c4120b295fb45cb684163'
             ]
             // $.authorCode = authorCodeList[random(0, authorCodeList.length)]
             $.authorCode = ownCode ? ownCode : authorCodeList[random(0, authorCodeList.length)]
@@ -102,6 +103,7 @@ async function member() {
     if ($.token) {
         await getMyPing();
         if ($.secretPin) {
+            console.log("去助力 -> " + $.authorCode);
             await taskaccessLog("common/accessLogWithAD", `venderId=${$.activityShopId}&code=99&pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}&pageUrl=${$.activityUrl}&subType=app&adSource=GG`, 1);
             await task('wxActionCommon/getUserInfo', `pin=${encodeURIComponent($.secretPin)}`, 1)
             if ($.index === 1) {
