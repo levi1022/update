@@ -23,11 +23,18 @@ if ($.isNode()) {
     cookiesArr = cookiesArr.filter(item => !!item);
 }
 !(async () => {
+    $.getAuthorCodeListerr = false
     if (!cookiesArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
-
+    authorCodeList = await getAuthorCodeList('https://gitee.com/fatelight/Code/raw/master/lzdz7.json')
+    if($.getAuthorCodeListerr === false){
+        authorCodeList = [
+            'f2937614d98a401495f8140491400c4a',
+        ]
+    }
+    // console.log(authorCodeList)
     for (let i = 0; i < cookiesArr.length; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i]
@@ -49,11 +56,11 @@ if ($.isNode()) {
             $.bean = 0;
             $.ADID = getUUID('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 1);
             $.UUID = getUUID('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-            authorCodeList = [
-                'f2937614d98a401495f8140491400c4a',
-                'abfc04b8197f4f19bb7254540c7182fc',
-                'ed811e2932af4311b35b40b3ef7faa2e',
-            ]
+            // authorCodeList = [
+            //     'f2937614d98a401495f8140491400c4a',
+            //     'abfc04b8197f4f19bb7254540c7182fc',
+            //     'ed811e2932af4311b35b40b3ef7faa2e',
+            // ]
             // $.authorCode = authorCodeList[random(0, authorCodeList.length)]
             $.authorCode = ownCode ? ownCode : authorCodeList[random(0, authorCodeList.length)]
             $.authorNum = `${random(1000000, 9999999)}`
@@ -279,9 +286,11 @@ function getAuthorCodeList(url) {
         $.get(options, async (err, resp, data) => {
             try {
                 if (err) {
-                    $.log(err)
+                    // $.log(err)
+                    $.getAuthorCodeListerr = false
                 } else {
                 if (data) data = JSON.parse(data)
+                    $.getAuthorCodeListerr = true
                 }
             } catch (e) {
                 $.logErr(e, resp)
