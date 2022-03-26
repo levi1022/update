@@ -69,7 +69,7 @@ if ($.isNode()) {
             $.activityShopId = '1000001582'
             $.activityUrl = `https://lzdz1-isv.isvjcloud.com/dingzhi/yapei/redenvelope/activity/${$.authorNum}?activityId=${$.activityId}&shareUuid=${encodeURIComponent($.authorCode)}&adsource=null&shareuserid4minipg=${encodeURIComponent($.secretPin)}&shopid=${$.activityShopId}&sid=&un_area=`
             await member();
-            await $.wait(1000)
+            await $.wait(3000)
             if ($.bean > 0) {
                 message += `\n【京东账号${$.index}】${$.nickName || $.UserName} \n       └ 获得 ${$.bean} 京豆。`
             }
@@ -104,6 +104,7 @@ async function member() {
         if ($.secretPin) {
             await taskaccessLog("common/accessLogWithAD", `venderId=${$.activityShopId}&code=99&pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}&pageUrl=${$.activityUrl}&subType=app&adSource=null`, 1);
             await task('wxActionCommon/getUserInfo', `pin=${encodeURIComponent($.secretPin)}`, 1)
+            await $.wait(1000)
             await task('yapei/redenvelope/activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&pinImg=&nick=${encodeURIComponent($.pin)}&cjyxPin=&cjhyPin=&shareUuid=${encodeURIComponent($.authorCode)}`, 0, 1)
             // $.log("关注店铺")
             await task('taskact/common/drawContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`)
@@ -117,6 +118,7 @@ async function member() {
             } else {
                 $.log("已开卡\n")
             }
+            await $.wait(1000)
             await task('yapei/redenvelope/activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&pinImg=&nick=${encodeURIComponent($.pin)}&cjyxPin=&cjhyPin=&shareUuid=${encodeURIComponent($.authorCode)}`, 0, 1)
             // await task('yapei/redenvelope/checkOpenCard', `pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}&shareUuid=${encodeURIComponent($.authorCode)}&actorUuid=${encodeURIComponent($.actorUuid)}`)
         }
