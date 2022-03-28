@@ -82,6 +82,7 @@ console.log("关注 https://t.me/okyydsnb")
             $.index = i + 1;
             $.isLogin = true;
             $.nickName = '';
+            $.errorMessage = ''
             await checkCookie();
             console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
             if (!$.isLogin) {
@@ -104,11 +105,15 @@ console.log("关注 https://t.me/okyydsnb")
             for(let i in authorCodeList){
                 $.authorCode = authorCodeList[i]
                 console.log('去助力: '+$.authorCode)
+                
                 await share();
-                await $.wait(4000)
+                if ($.errorMessage === '活动太火爆，还是去买买买吧') {
+                    break
+                }
+                await $.wait(2000)
             }
         }
-        await $.wait(4000)
+        await $.wait(2000)
     }
     for (let i = 0; i < ownCookieNum; i++) {
         if (cookiesArr[i]) {
@@ -123,7 +128,7 @@ console.log("关注 https://t.me/okyydsnb")
             $.activityId = activityId
             $.activityShopId = activityShopId
             await getPrize();
-            await $.wait(4000)
+            await $.wait(2000)
         }
     }
 })()
@@ -144,7 +149,7 @@ async function share() {
     if ($.token) {
         await getMyPing();
         if ($.secretPin) {
-            await $.wait(4000)
+            await $.wait(2000)
             await task('common/accessLogWithAD', `venderId=${$.activityShopId}&code=25&pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}&pageUrl=${$.activityUrl}&subType=app&adSource=null`, 1);
             await task('activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&friendUuid=${encodeURIComponent($.authorCode)}`)
         } else {
@@ -166,7 +171,6 @@ async function getPrize() {
     if ($.token) {
         await getMyPing();
         if ($.secretPin) {
-            await $.wait(3000)
             await task('activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&friendUuid=${encodeURIComponent($.authorCode)}`)
             for(let d in $.drawContentVOs){
                 await task('getPrize', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&drawInfoId=${$.drawContentVOs[d]['drawInfoId']}`)
@@ -298,7 +302,8 @@ function getMyPing() {
                             $.secretPin = data.data.secretPin;
                             cookie = `${cookie};AUTH_C_USER=${data.data.secretPin}`
                         } else {
-                            $.log(data.errorMessage)
+                            $.errorMessage = data.errorMessage
+                            $.log($.errorMessage)
                         }
                     } else {
                         $.log("京东返回了空数据")
