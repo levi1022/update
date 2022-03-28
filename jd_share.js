@@ -121,6 +121,7 @@ console.log("关注 https://t.me/okyydsnb")
             $.activityId = activityId
             $.activityShopId = activityShopId
             await getPrize();
+            await $.wait(5000)
         }
     }
 })()
@@ -162,6 +163,7 @@ async function getPrize() {
     if ($.token) {
         await getMyPing();
         if ($.secretPin) {
+            await $.wait(3000)
             await task('activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&friendUuid=${encodeURIComponent($.authorCode)}`)
             for(let d in $.drawContentVOs){
                 await task('getPrize', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&drawInfoId=${$.drawContentVOs[d]['drawInfoId']}`)
