@@ -108,6 +108,7 @@ console.log("关注 https://t.me/okyydsnb")
                 await $.wait(4000)
             }
         }
+        await $.wait(4000)
     }
     for (let i = 0; i < ownCookieNum; i++) {
         if (cookiesArr[i]) {
@@ -143,7 +144,7 @@ async function share() {
     if ($.token) {
         await getMyPing();
         if ($.secretPin) {
-            await $.wait(2000)
+            await $.wait(4000)
             await task('common/accessLogWithAD', `venderId=${$.activityShopId}&code=25&pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}&pageUrl=${$.activityUrl}&subType=app&adSource=null`, 1);
             await task('activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&friendUuid=${encodeURIComponent($.authorCode)}`)
         } else {
