@@ -15,8 +15,8 @@ let activityShopId = ''
 if (process.env.OWN_COOKIE_NUM && process.env.OWN_COOKIE_NUM != 4) {
     ownCookieNum = process.env.OWN_COOKIE_NUM;
 }
-if (process.env.ACTIVITY_ID && process.env.ACTIVITY_ID != "") {
-    activityId = process.env.ACTIVITY_ID;
+if (process.env.SHARE_ACTIVITY_ID && process.env.SHARE_ACTIVITY_ID != "") {
+    activityId = process.env.SHARE_ACTIVITY_ID;
 }
 
 if ($.isNode()) {
