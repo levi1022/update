@@ -105,6 +105,7 @@ console.log("关注 https://t.me/okyydsnb")
                 $.authorCode = authorCodeList[i]
                 console.log('去助力: '+$.authorCode)
                 await share();
+                await $.wait(4000)
             }
         }
     }
@@ -121,7 +122,7 @@ console.log("关注 https://t.me/okyydsnb")
             $.activityId = activityId
             $.activityShopId = activityShopId
             await getPrize();
-            await $.wait(5000)
+            await $.wait(4000)
         }
     }
 })()
