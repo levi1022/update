@@ -8,7 +8,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', message = '';
 let authorCodeList = [];
-let ownCookieNum = 4;
+let ownCookieNum = 1;
 let isGetAuthorCodeList = true
 let activityId = ''
 let activityShopId = ''
@@ -143,6 +143,7 @@ async function share() {
     if ($.token) {
         await getMyPing();
         if ($.secretPin) {
+            await $.wait(2000)
             await task('common/accessLogWithAD', `venderId=${$.activityShopId}&code=25&pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}&pageUrl=${$.activityUrl}&subType=app&adSource=null`, 1);
             await task('activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&friendUuid=${encodeURIComponent($.authorCode)}`)
         } else {
